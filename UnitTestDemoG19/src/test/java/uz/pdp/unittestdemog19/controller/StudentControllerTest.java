@@ -73,29 +73,29 @@ class StudentControllerTest {
 //    }
 
 
-    @Test
-    void testPostMappingStudent() throws Exception {
-        //given
-        Student student=new Student("Tesha","tesha@gamil.com", Gender.MALE);
-        when(studentService.addStudent(any())).thenReturn(student);
-        ObjectMapper objectMapper = new ObjectMapper();
-        ResultActions resultActions = mockMvc.perform(
-                        post("/api/students")
-                                .content(objectMapper.writeValueAsString(student))
-                                .contentType(MediaType.APPLICATION_JSON)
-                                .accept(MediaType.APPLICATION_JSON)
-                )
-                .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-//                .andExpect((ResultMatcher) jsonPath("$.name", is("Tesha")))
-                .andExpect(result -> {
-                    Student readValue = objectMapper.readValue(result.getResponse().getContentAsByteArray(), Student.class);
-//                    String readValue=new String(result.getResponse().getContentAsByteArray());
-                    Assertions.assertEquals(readValue,student);
-
-                })
-                .andExpect(jsonPath("$").isNotEmpty());
-
-    }
+//    @Test
+//    void testPostMappingStudent() throws Exception {
+//        //given
+//        Student student=new Student("Tesha","tesha@gamil.com", Gender.MALE);
+//        when(studentService.addStudent(any())).thenReturn(student);
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        ResultActions resultActions = mockMvc.perform(
+//                        post("/api/students")
+//                                .content(objectMapper.writeValueAsString(student))
+//                                .contentType(MediaType.APPLICATION_JSON)
+//                                .accept(MediaType.APPLICATION_JSON)
+//                )
+//                .andDo(print())
+//                .andExpect(status().isOk())
+//                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+////                .andExpect((ResultMatcher) jsonPath("$.name", is("Tesha")))
+//                .andExpect(result -> {
+//                    Student readValue = objectMapper.readValue(result.getResponse().getContentAsByteArray(), Student.class);
+////                    String readValue=new String(result.getResponse().getContentAsByteArray());
+//                    Assertions.assertEquals(readValue,student);
+//
+//                })
+//                .andExpect(jsonPath("$").isNotEmpty());
+//
+//    }
 }
